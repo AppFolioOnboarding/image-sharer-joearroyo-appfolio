@@ -1,0 +1,4 @@
+<p><%= link_to "Add an Image", new_image_path %></p>
+<%@images.each do |image|%>
+  <%= image_tag(image.url) %>
+<%end%>
