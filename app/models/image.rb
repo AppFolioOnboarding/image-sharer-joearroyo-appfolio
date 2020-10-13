@@ -3,6 +3,8 @@ class Image < ApplicationRecord
                   format: { with: /.+\.(png|jpg|gif|tiff)\Z/i, message: 'Invalid image extension' }
   validate :url_must_be_formatted_properly
 
+  private
+
   def url_must_be_formatted_properly
     error_label = :invalid_url_format
     error_msg = 'Invalid url format'
