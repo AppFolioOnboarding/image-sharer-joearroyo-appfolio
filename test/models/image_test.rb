@@ -18,30 +18,17 @@ class ImageTest < ActiveSupport::TestCase
 
   test 'URL must be formatted properly' do
     image = Image.new
-    image.valid?
-    assert ErrorHelper.error_for_validation(image, :url, :invalid_url_format)
+    [nil, 'invalidurl', 'invalidurl.what', 'www.invalidurl'].each do |invalid_url|
+      image.url = invalid_url
+      image.valid?
+      assert ErrorHelper.error_for_validation(image, :url, :invalid_url_format)
+    end
 
-    image.url = 'invalidurl'
-    image.valid?
-    assert ErrorHelper.error_for_validation(image, :url, :invalid_url_format)
-
-    image.url = 'invalidurl.what'
-    image.valid?
-    assert ErrorHelper.error_for_validation(image, :url, :invalid_url_format)
-
-    image.url = 'www.invalidurl'
-    image.valid?
-    assert ErrorHelper.error_for_validation(image, :url, :invalid_url_format)
-
-    image.url = 'http://testing.com/image.jpg'
-    image.valid?
-    refute ErrorHelper.error_for_validation(image, :url, :invalid_url_format),
-           'URL is not passing as valid using http prefix'
-
-    image.url = 'https://testing.com/image.png'
-    image.valid?
-    refute ErrorHelper.error_for_validation(image, :url, :invalid_url_format),
-           'URL is not passing as valid using https prefix'
+    ['http://testing.com/image.jpg', 'https://testing.com/image.png'].each do |valid_url|
+      image.url = valid_url
+      image.valid?
+      refute ErrorHelper.error_for_validation(image, :url, :invalid_url_format)
+    end
   end
 
   test 'URL must have an image name before its extension' do
@@ -55,34 +42,23 @@ class ImageTest < ActiveSupport::TestCase
   test 'URL must have proper image extension' do
     image = Image.new
 
-    # improper image extension
-    image.url = 'image.blah'
-    image.valid?
-    assert ErrorHelper.error_for_validation(image, :url, :invalid)
+    perform_url_test(false, image, 'image.blah', :invalid, 'invalid image extension should not pass')
+    perform_url_test(true, image, 'image.png', :invalid, 'png extension was rejected')
+    perform_url_test(true, image, 'image.PNG', :invalid, 'extensions should not be case sensitive')
+    perform_url_test(true, image, 'image.jpg', :invalid, 'jpg extension was rejected')
+    perform_url_test(true, image, 'image.gif', :invalid, 'gif extension was rejected')
+    perform_url_test(true, image, 'image.tiff', :invalid, 'tiff extension was rejected')
+  end
 
-    image.url = 'image.png'
-    image.valid?
-    refute ErrorHelper.error_for_validation(image, :url, :invalid),
-           'png extension was rejected'
+  private
 
-    image.url = 'image.PNG'
+  def perform_url_test(expect_success, image, url, validation, error_msg)
+    image.url = url
     image.valid?
-    refute ErrorHelper.error_for_validation(image, :url, :invalid),
-           'extensions should not be case sensitive'
-
-    image.url = 'image.jpg'
-    image.valid?
-    refute ErrorHelper.error_for_validation(image, :url, :invalid),
-           'jpg extension was rejected'
-
-    image.url = 'image.gif'
-    image.valid?
-    refute ErrorHelper.error_for_validation(image, :url, :invalid),
-           'gif extension was rejected'
-
-    image.url = 'image.tiff'
-    image.valid?
-    refute ErrorHelper.error_for_validation(image, :url, :invalid),
-           'tiff extension was rejected'
+    if expect_success
+      refute ErrorHelper.error_for_validation(image, :url, validation), error_msg
+    else
+      assert ErrorHelper.error_for_validation(image, :url, validation), error_msg
+    end
   end
 end
