@@ -1,7 +1,13 @@
 require 'test_helper'
 
 class ImageTest < ActiveSupport::TestCase
-  test "URL can't be blank" do
+  # test for the overal validity of a properly constructed image
+  test 'valid image' do
+    image = Image.new(url: 'http://validsite.com/validimage.png')
+    assert image.valid?
+  end
+
+  test 'URL cant be blank' do
     image = Image.new
     image.valid?
 
