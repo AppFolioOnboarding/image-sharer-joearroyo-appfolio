@@ -1,6 +1,5 @@
 class ImagesController < ApplicationController
   def index
-    # retrieve images sorted such that the newest ones are displayed first
     @images = Image.order(created_at: :desc)
   end
 
