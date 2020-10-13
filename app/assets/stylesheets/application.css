@@ -14,14 +14,34 @@
  *= require_self
  */
 
+*{
+  color: white;
+}
+
+input[type=text] {
+  color: black;
+  background-color: white;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding-left: 40px;
+  width: 512px;
+}
+
+input[type=submit] {
+  color: gray;
+}
+
+html{
+  background-color: #3f3e4b
+}
+
  /*
   ========================================
   Body
   ========================================
 */
 .mainContent {
-  margin: auto;
-  height: 100%;
+  background-color: #3f3e4b;
 }
 
 /*
