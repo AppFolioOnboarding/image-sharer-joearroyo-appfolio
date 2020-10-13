@@ -24,7 +24,7 @@ input[type=text] {
   background-position: 10px 10px;
   background-repeat: no-repeat;
   padding-left: 40px;
-  width: 512px;
+  width: 100%;
 }
 
 input[type=submit] {
@@ -32,7 +32,7 @@ input[type=submit] {
 }
 
 html{
-  background-color: #3f3e4b
+  background-color: #52635d;
 }
 
  /*
@@ -41,7 +41,7 @@ html{
   ========================================
 */
 .mainContent {
-  background-color: #3f3e4b;
+  background-color: #52635d;
 }
 
 /*
@@ -148,9 +148,9 @@ h5 {
   ========================================
 */
 .main-header{
-  background: rgb(82,99,93);
-  background: linear-gradient(124deg, rgba(82,99,93,1) 0%, rgba(63,62,75,1) 100%);
-  border-radius: 16px;
+  background: #52635d;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
 }
 .main-header a,
 .main-header a {
@@ -167,5 +167,5 @@ h5 {
   ========================================
 */
 #error_explanation {
-  color: #f00;
+  color: #fdb66e
 }

@@ -15,11 +15,13 @@
 }
 
 .image-container {
+  margin: 32px;
   width: 400px;
   height: 400px;
-  background-color: #52635d;
   border: 3px solid #fdb66e;
+  border-radius: 12px;
   display: inline-block;
+  box-shadow: 5px 5px 3px rgba(1,1,1,0.25);
 }
 
 img{
@@ -29,4 +31,19 @@ img{
 
 .image {
   object-fit: scale-down;
+}
+
+.new-image-form
+{
+  border-radius: 16px;
+  background-color: #3f3e4b;
+  box-shadow: 5px 5px 3px rgba(1,1,1,0.25);
+}
+
+.new-image-form, 
+.new-image-header {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 512px;
+  padding: 16px;
 }
