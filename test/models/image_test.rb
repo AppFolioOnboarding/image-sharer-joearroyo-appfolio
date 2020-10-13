@@ -4,94 +4,85 @@ class ImageTest < ActiveSupport::TestCase
   test "URL can't be blank" do
     image = Image.new
     image.valid?
-    
-    #image url should fail the presence validator specifically
+
+    # image url should fail the presence validator specifically
     assert ErrorHelper.has_error_for_validation(image, :url, :blank)
 
-    #This only tests whether there is something in the url attribute, 
-    #so purposefully putting an invalid url here
-    image.url = "testurl"
+    # This only tests whether there is something in the url attribute,
+    # so purposefully putting an invalid url here
+    image.url = 'testurl'
     image.valid?
 
     refute ErrorHelper.has_error_for_validation(image, :url, :blank)
   end
 
-  test "URL must be formatted properly" do
+  test 'URL must be formatted properly' do
     image = Image.new
     image.valid?
     assert ErrorHelper.has_error_for_validation(image, :url, :invalid_url_format)
 
-    image.url = "invalidurl"
+    image.url = 'invalidurl'
     image.valid?
     assert ErrorHelper.has_error_for_validation(image, :url, :invalid_url_format)
 
-    image.url = "invalidurl.what"
+    image.url = 'invalidurl.what'
     image.valid?
     assert ErrorHelper.has_error_for_validation(image, :url, :invalid_url_format)
 
-    image.url = "www.invalidurl"
+    image.url = 'www.invalidurl'
     image.valid?
     assert ErrorHelper.has_error_for_validation(image, :url, :invalid_url_format)
 
-    image.url = "http://testing.com/image.jpg"
+    image.url = 'http://testing.com/image.jpg'
     image.valid?
     refute ErrorHelper.has_error_for_validation(image, :url, :invalid_url_format),
-     "URL is not passing as valid using http prefix"
+           'URL is not passing as valid using http prefix'
 
-    image.url = "https://testing.com/image.png"
+    image.url = 'https://testing.com/image.png'
     image.valid?
     refute ErrorHelper.has_error_for_validation(image, :url, :invalid_url_format),
-     "URL is not passing as valid using https prefix"
+           'URL is not passing as valid using https prefix'
   end
 
-  test "URL must have proper image extension" do
+  test 'URL must have an image name before its extension' do
     image = Image.new
-    image.valid?
-    assert ErrorHelper.has_error_for_validation(image, :url, :invalid)
-
-    #improper image extension
-    image.url = "image.blah"
-    image.valid?
-    assert ErrorHelper.has_error_for_validation(image, :url, :invalid)
-
-    #valid url, but bad extension
-    image.url = "http://testing.com/image.blah"
-    image.valid?
-    assert ErrorHelper.has_error_for_validation(image, :url, :invalid)
-
-    image.url = ".png"
+    image.url = '.png'
     image.valid?
     assert ErrorHelper.has_error_for_validation(image, :url, :invalid),
-     "empty image names should not be allowed, even if they contain a proper extension"
+           'empty image names should not be allowed, even if they contain a proper extension'
+  end
 
-    image.url = "image.png"
+  test 'URL must have proper image extension' do
+    image = Image.new
+
+    # improper image extension
+    image.url = 'image.blah'
+    image.valid?
+    assert ErrorHelper.has_error_for_validation(image, :url, :invalid)
+
+    image.url = 'image.png'
     image.valid?
     refute ErrorHelper.has_error_for_validation(image, :url, :invalid),
-      "png extension was rejected"
+           'png extension was rejected'
 
-    image.url = "image.PNG"
+    image.url = 'image.PNG'
     image.valid?
     refute ErrorHelper.has_error_for_validation(image, :url, :invalid),
-      "extensions should not be case sensitive"
+           'extensions should not be case sensitive'
 
-    image.url = "image.jpg"
+    image.url = 'image.jpg'
     image.valid?
     refute ErrorHelper.has_error_for_validation(image, :url, :invalid),
-      "jpg extension was rejected"
+           'jpg extension was rejected'
 
-    image.url = "image.gif"
+    image.url = 'image.gif'
     image.valid?
     refute ErrorHelper.has_error_for_validation(image, :url, :invalid),
-      "gif extension was rejected"
+           'gif extension was rejected'
 
-    image.url = "image.tiff"
+    image.url = 'image.tiff'
     image.valid?
     refute ErrorHelper.has_error_for_validation(image, :url, :invalid),
-      "tiff extension was rejected"
-
-    image.url = "http://somewebsite.com/image.png"
-    image.valid?
-    refute ErrorHelper.has_error_for_validation(image, :url, :invalid)
-      "Full url ending in a proper image extension was rejected"
+           'tiff extension was rejected'
   end
 end
