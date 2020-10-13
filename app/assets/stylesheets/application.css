@@ -13,3 +13,139 @@
  *= require_tree .
  *= require_self
  */
+
+ /*
+  ========================================
+  Body
+  ========================================
+*/
+.mainContent {
+  margin: auto;
+  height: 100%;
+}
+
+/*
+  ========================================
+  Clearfix
+  ========================================
+*/
+.group:before,
+.group:after {
+  content: "";
+  display: table;
+}
+.group:after {
+  clear: both;
+}
+.group {
+  clear: both;
+  *zoom: 1;
+}
+
+ /*
+  ========================================
+  Grid
+  ========================================
+*/
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.container,
+.grid {
+  margin: 0 auto;
+  width: 960px;
+}
+.container {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.grid {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/*
+  ========================================
+  Typography
+  ========================================
+*/
+h1, h2, h3, h4 {
+  color: #52635d;
+}
+h1, h3, h4, h5, p {
+  margin-bottom: 22px;
+}
+h1 {
+  font-size: 36px;
+  line-height: 44px;
+}
+h2 {
+  font-size: 24px;
+  line-height: 44px;
+}
+h3 {
+  font-size: 21px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  color: #a9b2b9;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/*
+  ========================================
+  Logo
+  ========================================
+*/
+ .logo {
+  border-top: 4px solid #f45a3e;
+  border-bottom: 4px solid 	#fdb66e;
+  float: left;
+  font-size: 48px;
+  font-weight: 100;
+  letter-spacing: .5px;
+  line-height: 44px;
+  padding: 40px 0 22px 0;
+  text-transform: uppercase;
+}
+.tagline {
+  margin: 66px 0 22px 0;
+  text-align: right;
+  color: #fff;
+}
+
+/*
+  ========================================
+  Header
+  ========================================
+*/
+.main-header{
+  background: rgb(82,99,93);
+  background: linear-gradient(124deg, rgba(82,99,93,1) 0%, rgba(63,62,75,1) 100%);
+  border-radius: 16px;
+}
+.main-header a,
+.main-header a {
+  color: #fff;
+}
+.main-header a:hover{
+  color: #fdb66e;
+  text-decoration: none;
+}
+
+/*
+  ========================================
+  Errors
+  ========================================
+*/
+#error_explanation {
+  color: #f00;
+}
