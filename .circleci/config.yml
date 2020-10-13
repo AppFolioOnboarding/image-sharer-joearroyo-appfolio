@@ -27,6 +27,12 @@ jobs:
             sudo apt-get update && sudo apt-get install cmake
 
       - run:
+          name: Install c standard library
+          command: |
+            sudo rm -rf /var/lib/apt/lists/* &&
+            sudo apt-get update && sudo apt-get install libc6
+
+      - run:
           name: Install and start geckodriver
           command: |
             wget https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux64.tar.gz &&
