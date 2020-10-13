@@ -1,0 +1,9 @@
+<p class="image-link"><%= link_to "Add an Image", new_image_path %></p>
+
+<section class="image-index">
+  <% @images.each do |image| %>
+    <section class="image-container">
+      <%= image_tag(image.url, class: "image") %>
+    </section>
+  <%end%>
+</section>
