@@ -1,4 +1,6 @@
 class Image < ApplicationRecord
+  acts_as_taggable_on :tags
+
   validates :url, presence: true,
                   format: { with: /.+\.(png|jpg|gif|tiff)\Z/i, message: 'Invalid image extension' }
   validate :url_must_be_formatted_properly

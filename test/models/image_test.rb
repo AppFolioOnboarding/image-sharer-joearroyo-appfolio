@@ -3,7 +3,7 @@ require 'test_helper'
 class ImageTest < ActiveSupport::TestCase
   # test for the overal validity of a properly constructed image
   test 'valid image' do
-    image = Image.new(url: 'http://validsite.com/validimage.png')
+    image = make_valid_image
     assert image.valid?
   end
 
@@ -65,7 +65,30 @@ class ImageTest < ActiveSupport::TestCase
     perform_url_test(true, image, 'image.tiff', :invalid, 'tiff extension was rejected')
   end
 
+  test 'can add tag' do
+    image = make_valid_image
+    image.tag_list.add('test tag')
+    image.save
+
+    assert_equal 1, Image.tagged_with('test tag').count
+  end
+
+  test 'can remove tag' do
+    image = make_valid_image
+    image.tag_list.add('test tag')
+    image.save
+
+    image.tag_list.remove('test tag')
+    image.save
+
+    assert_equal 0, Image.tagged_with('test tag').count
+  end
+
   private
+
+  def make_valid_image
+    Image.new(url: 'http://validsite.com/validimage.png')
+  end
 
   def perform_url_test(expect_success, image, url, validation, error_msg)
     image.url = url
