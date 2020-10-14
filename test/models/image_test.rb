@@ -84,6 +84,13 @@ class ImageTest < ActiveSupport::TestCase
     assert_equal 0, Image.tagged_with('test tag').count
   end
 
+  test 'can add multiple tags as one string' do
+    image = make_valid_image
+    image.tag_list = 'tag1, tag2, tag3'
+
+    assert_equal 3, image.tag_list.count
+  end
+
   private
 
   def make_valid_image
