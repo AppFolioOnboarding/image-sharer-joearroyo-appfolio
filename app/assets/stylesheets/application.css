@@ -18,6 +18,7 @@
   color: white;
 }
 
+textarea,
 input[type=text] {
   color: black;
   background-color: white;
