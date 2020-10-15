@@ -2,14 +2,7 @@
   <% @images.each do |image| %>
     <td class="image-container">
       <%= image_tag(image.url, class: "image") %>
-      <p>
-      <% if image.tag_list.any? %>
-        |
-        <% image.tag_list.each do |tag| %>
-          <%= link_to "\##{tag}", tag_search_images_path(tag: tag) %> | 
-        <%end%>
-      <%end%>
-      </p>
+      <%= render 'shared/tag_links', image: image %>
     </td>
   <%end%>
 </table>

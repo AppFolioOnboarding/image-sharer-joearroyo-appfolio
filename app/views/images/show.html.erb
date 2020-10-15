@@ -1,6 +1,4 @@
 <p>
 <%= image_tag(@image.url) %>
 </p>
-<p>
-<%= @image.tag_list %>
-</p>
+<%= render 'shared/tag_links', image: @image %>
