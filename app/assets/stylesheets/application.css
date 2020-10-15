@@ -38,6 +38,25 @@ html{
 
  /*
   ========================================
+  Links
+  ========================================
+*/
+a:link {
+  color: #fdb66e;
+  text-decoration: underline;
+}
+a:visited {
+  color: #fdb66e;
+}
+a:hover {
+  color: white;
+}
+a:active {
+  color: white;
+}
+
+ /*
+  ========================================
   Body
   ========================================
 */
@@ -156,6 +175,7 @@ h5 {
 .main-header a,
 .main-header a {
   color: #fff;
+  text-decoration: none;
 }
 .main-header a:hover{
   color: #fdb66e;
