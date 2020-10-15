@@ -20,6 +20,10 @@ class ImagesController < ApplicationController
     end
   end
 
+  def tag_search
+    @images = Image.tagged_with(params[:tag])
+  end
+
   private
 
   def image_params

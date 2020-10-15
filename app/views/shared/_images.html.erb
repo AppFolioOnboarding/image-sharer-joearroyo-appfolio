@@ -1,0 +1,8 @@
+<table class="image-index">
+  <% @images.each do |image| %>
+    <td class="image-container">
+      <%= image_tag(image.url, class: "image") %>
+      <p><%= image.tag_list %></p>
+    </td>
+  <%end%>
+</table>

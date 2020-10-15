@@ -41,4 +41,10 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
     assert_select 'li', /Invalid image extension/
   end
+
+  def test_tag_search__index
+    get tag_search_images_path, params: { tag: 'tag_one' }
+
+    assert_response :success
+  end
 end

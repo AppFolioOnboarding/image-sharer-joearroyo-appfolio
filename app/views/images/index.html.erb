@@ -1,10 +1,3 @@
 <p class="image-link"><%= link_to "Add an Image", new_image_path %></p>
 
-<table class="image-index">
-  <% @images.each do |image| %>
-    <td class="image-container">
-      <%= image_tag(image.url, class: "image") %>
-      <p><%= image.tag_list %></p>
-    </td>
-  <%end%>
-</table>
+<%= render "shared/images" %>
