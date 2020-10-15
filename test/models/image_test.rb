@@ -1,23 +1,22 @@
 require 'test_helper'
 
 class ImageTest < ActiveSupport::TestCase
-  # test for the overal validity of a properly constructed image
-  test 'valid image' do
+  def test_image__valid
     image = make_valid_image
-    assert image.valid?
+    assert_predicate image, :valid?
   end
 
-  test 'fixture count' do
+  def test_fixture__count
     assert_equal 2, Image.count
   end
 
-  test 'all fixtures must have valid urls' do
+  def test_fixture__has_all_valid_urls
     Image.all.each do |image|
-      assert image.valid?, "Invalid image fixture found: #{image.url}"
+      assert_predicate image, :valid?
     end
   end
 
-  test 'URL cant be blank' do
+  def test_url__invalid_if_blank
     image = Image.new
     image.valid?
 
@@ -31,7 +30,7 @@ class ImageTest < ActiveSupport::TestCase
     refute ErrorHelper.error_for_validation(image, :url, :blank)
   end
 
-  test 'URL must be formatted properly' do
+  def test_url__invalid_if_improper_address_format
     image = Image.new
     [nil, 'invalidurl', 'invalidurl.what', 'www.invalidurl'].each do |invalid_url|
       image.url = invalid_url
@@ -46,7 +45,7 @@ class ImageTest < ActiveSupport::TestCase
     end
   end
 
-  test 'URL must have an image name before its extension' do
+  def test_url__invalid_if_no_name_before_extension
     image = Image.new
     image.url = '.png'
     image.valid?
@@ -54,7 +53,7 @@ class ImageTest < ActiveSupport::TestCase
            'empty image names should not be allowed, even if they contain a proper extension'
   end
 
-  test 'URL must have proper image extension' do
+  def test_url__must_have_proper_image_extension
     image = Image.new
 
     perform_url_test(false, image, 'image.blah', :invalid, 'invalid image extension should not pass')
@@ -65,7 +64,7 @@ class ImageTest < ActiveSupport::TestCase
     perform_url_test(true, image, 'image.tiff', :invalid, 'tiff extension was rejected')
   end
 
-  test 'can add tag' do
+  def test_tag__can_add_tag
     image = make_valid_image
     image.tag_list.add('test tag')
     image.save
@@ -73,7 +72,7 @@ class ImageTest < ActiveSupport::TestCase
     assert_equal 1, Image.tagged_with('test tag').count
   end
 
-  test 'can remove tag' do
+  def test_tag__can_remove_tag
     image = make_valid_image
     image.tag_list.add('test tag')
     image.save
@@ -84,7 +83,7 @@ class ImageTest < ActiveSupport::TestCase
     assert_equal 0, Image.tagged_with('test tag').count
   end
 
-  test 'can add multiple tags as one string' do
+  def test_tag__can_add_multiple_tags_with_single_string
     image = make_valid_image
     image.tag_list = 'tag1, tag2, tag3'
 

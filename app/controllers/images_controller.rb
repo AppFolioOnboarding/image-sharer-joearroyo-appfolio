@@ -16,7 +16,7 @@ class ImagesController < ApplicationController
     if @image.save
       redirect_to @image
     else
-      render 'new'
+      render 'new', status: :unprocessable_entity
     end
   end
 
