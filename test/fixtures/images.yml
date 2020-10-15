@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  url: MyString
+  url: https://cdn.memes.com/up/43563881589123604/i/1602511415909.jpg
 
 two:
-  url: MyString
+  url: https://media.giphy.com/media/qDxe3pb4myxggnPe9u/giphy.gif

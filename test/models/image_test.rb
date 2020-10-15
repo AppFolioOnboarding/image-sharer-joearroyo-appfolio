@@ -7,11 +7,20 @@ class ImageTest < ActiveSupport::TestCase
     assert image.valid?
   end
 
+  test 'fixture count' do
+    assert_equal 2, Image.count
+  end
+
+  test 'all fixtures must have valid urls' do
+    Image.all.each do |image|
+      assert image.valid?, "Invalid image fixture found: #{image.url}"
+    end
+  end
+
   test 'URL cant be blank' do
     image = Image.new
     image.valid?
 
-    # image url should fail the presence validator specifically
     assert ErrorHelper.error_for_validation(image, :url, :blank)
 
     # This only tests whether there is something in the url attribute,
