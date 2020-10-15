@@ -6,6 +6,9 @@ AllCops:
     - 'vendor/**/*'
     - 'node_modules/**/*'
     - 'bin/*'
+
+    #ignoring migrations to account for auto generated migrations from third parties that violate rubocop rules
+    - 'db/migrate/*'
   TargetRubyVersion: 2.5
 
 Layout/IndentFirstArrayElement:
