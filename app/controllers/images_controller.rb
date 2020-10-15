@@ -16,13 +16,13 @@ class ImagesController < ApplicationController
     if @image.save
       redirect_to @image
     else
-      render 'new'
+      render 'new', status: :unprocessable_entity
     end
   end
 
   private
 
   def image_params
-    params.require(:image).permit(:url)
+    params.require(:image).permit(:url, :tag_list)
   end
 end
