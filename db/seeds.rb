@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Image.create([{ url: 'https://cdn.memes.com/up/43563881589123604/i/1602511415909.jpg',
-                tag_list: 'meme, love' },
+                tag_list: 'meme' },
               { url: 'https://media.giphy.com/media/qDxe3pb4myxggnPe9u/giphy.gif',
                 tag_list: 'gif, reaction, snl' },
               { url: 'https://cdn.memes.com/up/40676551584811955/i/1602516420263.jpg',
@@ -28,12 +28,10 @@ Image.create([{ url: 'https://cdn.memes.com/up/43563881589123604/i/1602511415909
                 tag_list: 'gif, reaction, laughing' },
               { url: 'https://cdn.pixabay.com/photo/2012/08/27/14/19/evening-55067__340.png',
                 tag_list: 'landscape, mountains, sunset' },
-              { url: 'https://photographylife.com/wp-content/uploads/2016/06/Mass.jpg',
-                tag_list: 'landscape, mountains, beach, cloudy' },
+              { url: 'https://photographylife.com/wp-content/uploads/2016/06/Mass.jpg' },
               { url: 'https://cdn.theatlantic.com/thumbor/Kr6wArslbgBkEnOtof8t9FglV1A=/0x'\
                 '53:2000x1286/640x400/media/img/photo/2020/02/winners-2019-international-'\
-                'landscap/p01_SanderGrefte14180-443-1/original.jpg',
-                tag_list: 'landscape, mountains' },
+                'landscap/p01_SanderGrefte14180-443-1/original.jpg' },
               { url: 'https://cdn2.outdoorphotographer.com/2019/11/Kiss_The_Landscape_Part2_05.jpg',
                 tag_list: 'landscape, africa, sunset' },
               { url: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/hbx06011'\
@@ -51,4 +49,6 @@ Image.create([{ url: 'https://cdn.memes.com/up/43563881589123604/i/1602511415909
                 tag_list: 'landscape, mountains, daytime' },
               { url: 'https://cdn.shortpixel.ai/client/q_lossy,ret_img,w_1000/https://www.pixin'\
                 'focus.com/wp-content/uploads/2020/03/Portrait-vs-Landscape-1.jpg',
-                tag_list: 'landscape, mountains, daytime' }])
+                tag_list: 'landscape, mountains, daytime, trees, dirt, rocks, sky, water,'\
+                 'test_tag01, test_tag02, test_tag03, test_tag04, test_tag05, test_tag06, test_tag07,'\
+                 'test_tag08, test_tag09, test_tag10' }])
