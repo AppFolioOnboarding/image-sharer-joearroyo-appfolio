@@ -20,6 +20,11 @@ class ImagesController < ApplicationController
     end
   end
 
+  def destroy
+    Image.destroy(params[:id])
+    redirect_to images_path
+  end
+
   def tag_search
     @images = Image.tagged_with(params[:tag]).order(created_at: :desc)
 
