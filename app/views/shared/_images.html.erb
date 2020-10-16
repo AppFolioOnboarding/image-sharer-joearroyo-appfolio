@@ -1,0 +1,8 @@
+<table class="image-index">
+  <% @images.each do |image| %>
+    <td class="image-container">
+      <%= image_tag(image.url, class: "image") %>
+      <%= render 'shared/tag_links', image: image %>
+    </td>
+  <%end%>
+</table>

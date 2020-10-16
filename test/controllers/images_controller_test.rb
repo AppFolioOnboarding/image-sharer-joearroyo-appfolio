@@ -41,4 +41,24 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
     assert_select 'li', /Invalid image extension/
   end
+
+  def test_tag_search__index
+    # construct and save multiple images to the db with different tags, only some of which are shared
+    Image.create!(url: 'http://test.png', tag_list: 'TestTag01, Shared Tag')
+    Image.create!(url: 'http://test.png', tag_list: 'TestTag02, Shared Tag')
+    Image.create!(url: 'http://test.png', tag_list: 'TestTag03')
+
+    get tag_search_images_path, params: { tag: 'Shared Tag' }
+
+    # both images should be found using the shared tag
+    assert_response :success
+    assert_equal 2, @controller.instance_variable_get('@images').count
+    assert_select 'a', /Shared Tag/
+
+    # only one of the images should be found using a tag that is not shared between them
+    get tag_search_images_path, params: { tag: 'TestTag01' }
+    assert_response :success
+    assert_equal 1, @controller.instance_variable_get('@images').count
+    assert_select 'a', /TestTag01/
+  end
 end

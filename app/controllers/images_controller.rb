@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   def index
-    @images = Image.order(created_at: :desc)
+    @images = all_images_ordered
   end
 
   def show
@@ -20,7 +20,18 @@ class ImagesController < ApplicationController
     end
   end
 
+  def tag_search
+    @images = Image.tagged_with(params[:tag]).order(created_at: :desc)
+
+    # if the tag search is unsuccesfull we'll currently fall back to displaying all images
+    @images = all_images_ordered if @images.empty?
+  end
+
   private
+
+  def all_images_ordered
+    Image.order(created_at: :desc)
+  end
 
   def image_params
     params.require(:image).permit(:url, :tag_list)
