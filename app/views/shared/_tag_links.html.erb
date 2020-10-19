@@ -1,8 +1,8 @@
 <% if image.tag_list.any? %>
-  <p>
+  <p class="js-image-tags">
     |
     <% image.tag_list.each do |tag| %>
-      <%= link_to "\##{tag}", tag_search_images_path(tag: tag) %> | 
+      <%= link_to "\##{tag}", tag_search_images_path(tag: tag), class: "js-image-tag" %> | 
     <%end%>
   </p>
 <%end%>
