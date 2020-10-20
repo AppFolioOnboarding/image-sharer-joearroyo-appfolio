@@ -1,6 +1,7 @@
 <table class="image-index">
   <% @images.each do |image| %>
     <td class="image-container">
+      <%= render 'shared/image_delete_button', image: image%>
       <%= image_tag(image.url, class: "image") %>
       <%= render 'shared/tag_links', image: image %>
     </td>

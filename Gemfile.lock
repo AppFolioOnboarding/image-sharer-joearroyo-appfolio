@@ -46,6 +46,8 @@ GEM
       activerecord (>= 5.0, < 6.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
+    ae_page_objects (4.2.0)
+      capybara (~> 3.0)
     arel (9.0.0)
     ast (2.4.0)
     bindex (0.7.0)
@@ -61,6 +63,7 @@ GEM
       xpath (~> 3.2)
     childprocess (1.0.1)
       rake (< 13.0)
+    coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     erubi (1.8.0)
@@ -122,6 +125,9 @@ GEM
     pronto-rubocop (0.10.0)
       pronto (~> 0.10.0)
       rubocop (~> 0.50, >= 0.49.1)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     public_suffix (3.1.1)
     puma (3.12.1)
     rack (2.0.7)
@@ -228,12 +234,14 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 6.0)
+  ae_page_objects
   byebug
   capybara
   jquery-rails
   listen (~> 3.0.5)
   pg
   pronto-rubocop
+  pry
   puma (~> 3.0)
   rails (~> 5.2.0)
   sass-rails (~> 5.0, >= 5.0.6)

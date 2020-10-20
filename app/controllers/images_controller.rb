@@ -14,16 +14,22 @@ class ImagesController < ApplicationController
   def create
     @image = Image.new(image_params)
     if @image.save
-      redirect_to @image
+      redirect_to @image, notice: 'Image added successfully'
     else
+      flash[:alert] = 'Image creation failed'
       render 'new', status: :unprocessable_entity
     end
   end
 
-  def tag_search
-    @images = Image.tagged_with(params[:tag]).order(created_at: :desc)
+  def destroy
+    Image.destroy(params[:id])
+    redirect_to images_path
+  end
 
-    # if the tag search is unsuccesfull we'll currently fall back to displaying all images
+  def tag_search
+    @images = all_images_ordered.tagged_with(params[:tag])
+
+    # if the tag search is unsuccessful we'll currently fall back to displaying all images
     @images = all_images_ordered if @images.empty?
   end
 

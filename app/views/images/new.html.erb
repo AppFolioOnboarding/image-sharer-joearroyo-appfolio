@@ -1,7 +1,7 @@
 <h1 class="new-image-header">Add New Image</h1>
 
 <div class="new-image-form">
-  <%= form_with scope: :image, url: images_path, local: true do |form| %>
+  <%= form_with scope: :image, url: images_path, class: 'js-image-form', local: true do |form| %>
     <% if @image.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -18,12 +18,12 @@
 
     <p>
       <%= form.label  "Image URL" %>
-      <%= form.text_field :url %>
+      <%= form.text_field :url, class: 'js-image-url' %>
     </p>
 
     <p>
       <%= form.label  "Image Tags" %>
-      <%= form.text_area :tag_list %>
+      <%= form.text_area :tag_list, class: 'js-image-tags' %>
     </p>
 
     <p>
