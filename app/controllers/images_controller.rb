@@ -27,9 +27,9 @@ class ImagesController < ApplicationController
   end
 
   def tag_search
-    @images = Image.tagged_with(params[:tag]).order(created_at: :desc)
+    @images = all_images_ordered.tagged_with(params[:tag])
 
-    # if the tag search is unsuccesfull we'll currently fall back to displaying all images
+    # if the tag search is unsuccessful we'll currently fall back to displaying all images
     @images = all_images_ordered if @images.empty?
   end
 
